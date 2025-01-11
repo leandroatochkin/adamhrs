@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useCountryQuery } from "../../services/api/countries_api";
-import { FormControl, TextField, InputLabel } from '@mui/material';
+import { FormControl, TextField, SelectChangeEvent } from '@mui/material';
 import { Dropdown, DateSelect } from "../../components";
 import dayjs, { Dayjs } from 'dayjs';
 import { calculateAge, inputErrorMessages } from "../../utils/functions/functions";
@@ -46,7 +46,7 @@ const MainForm = () => {
         setFormData(
             (prev) => ({
                 ...prev,
-                age: age as string, // Type assertion to string
+                age: String(age), // Type assertion to string
               })
       );
     }
@@ -57,23 +57,34 @@ const MainForm = () => {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-  const handleCountryChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleCountryChange = (event: SelectChangeEvent<string>) => {
     setFormData((prev) => ({
       ...prev,
-      country: event.target.value as string, // Type assertion to string
+      country: event.target.value as string, 
     }));
   };
 
   const handleDateChange = (newValue: Dayjs | null) => {
     setFormData((prev) => ({
       ...prev,
-      dob: newValue ? newValue.format('YYYY-MM-DD') : '', // Convert to string format if valid
+      dob: newValue ? newValue.format('YYYY-MM-DD') : '', 
     }));
   };
   
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error fetching countries</p>;
+  if (isLoading) return <div className={style.container}>
+    <div style={{width: '10%', height: '10%', backgroundColor: '#e7edf3', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+    <p style={{color: '#0e141b', fontWeight: 'bolder'}}>Loading...</p>
+    </div>
+  </div>;
+
+  if (error) return <div className={style.container}>
+  <div style={{width: '10%', height: '10%', backgroundColor: '#e7edf3', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+  <p style={{color: '#0e141b', fontWeight: 'bolder'}}>Error fetching countries</p>
+  </div>
+</div>;
+  
+  
 
   return (
     <div className={style.container}>
@@ -97,7 +108,7 @@ const MainForm = () => {
         error={!!errors.firstName}
         helperText={inputErrorMessages(errors.firstName, 'First name')}
         className={style.formInput}
-        sx={{paddingBottom: '1.5rem', backgroundColor: '#e7edf3'}}
+        sx={{paddingBottom: '2.5rem'}}
         />
 
         <TextField 
@@ -109,7 +120,7 @@ const MainForm = () => {
         error={!!errors.middleName} 
         helperText={inputErrorMessages(errors.middleName, 'Middle name')}
         className={style.formInput}
-        sx={{paddingBottom: '1.5rem'}}
+        sx={{paddingBottom: '2.5rem'}}
         />
         </div>
 
@@ -201,7 +212,7 @@ const MainForm = () => {
         error={!!errors.zip} 
         helperText={inputErrorMessages(errors.zip, 'Zip code')}
         className={style.formInput}
-        sx={{paddingBottom: '1.5rem', width: '50%'}}
+        sx={{paddingBottom: '3rem', width: '50%'}}
         />
 
         <div>
@@ -217,9 +228,9 @@ const MainForm = () => {
    
     </FormControl>
     <input 
-    type="submit" 
-    value="Submit"
-    className={style.submitButton}
+      type="submit" 
+      value="Submit"
+      className={style.submitButton}
     />
     </form>
     </div>

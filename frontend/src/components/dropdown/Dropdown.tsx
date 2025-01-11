@@ -1,12 +1,12 @@
 
-import { Select, MenuItem, InputLabel } from "@mui/material";
+import { Select, MenuItem, SelectChangeEvent } from "@mui/material";
 import style from "./Dropdown.module.css";
 
 interface Props {
   data: string[]; 
   name: string;
   value: string; 
-  onChange: (event: React.ChangeEvent<{ value: string }>) => void; 
+  onChange: (event: SelectChangeEvent<string>) => void; 
   }
 
 const Dropdown: React.FC<Props> = ({ data, value, onChange, name }) => {
