@@ -12,12 +12,12 @@
   }
   
 
-export const inputErrorMessages = (inputErrorObj: any) => {
+export const inputErrorMessages = (inputErrorObj: any, inputName: string) => {
     switch (inputErrorObj?.type) {
         case 'minLength':
-          return 'First name is required and must be at least 2 characters';
+          return `${inputName} is required and must be at least 2 characters`;
         case 'required':
-          return 'First name is required';
+          return `${inputName} is required`;
         case 'pattern':
           return 'Invalid input';
       }

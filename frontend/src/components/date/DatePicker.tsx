@@ -2,6 +2,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { Dayjs } from 'dayjs';
+import style from './DatePicker.module.css';
 import 'dayjs/locale/en';
 
 interface Props {
@@ -17,7 +18,7 @@ const DateSelect: React.FC<Props> = ({ label, value, onChange }) => {
         label={label}
         value={value}
         onChange={(newValue: Dayjs | null) => onChange(newValue)}
-
+        className={style.datePicker}
       />
     </LocalizationProvider>
   );

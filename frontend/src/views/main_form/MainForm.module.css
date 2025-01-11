@@ -1,0 +1,60 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #e7edf3;
+    padding: 0 15% 0 15%;
+    border-radius: 32px;
+    font-family: sans-serif;
+}
+
+.title{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #0e141b;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.separator{
+    width: 100%;
+    height: 1px;
+    background-color: #4e7397;
+    margin: 1rem 0 1rem 0;
+}
+
+.formInput {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    flex: 1;
+    resize: none;
+    overflow: hidden;
+    border-radius: 1rem; /* Equivalent to rounded-xl */
+    color: #0e141b;
+    outline: none; /* Equivalent to focus:outline-0 */
+    border: none; /* Equivalent to border-none */
+    background-color: #e7edf3;
+    height: 3.5rem; /* Equivalent to h-14 */
+    padding: 1rem; /* Equivalent to p-4 */
+    font-size: 1rem; /* Equivalent to text-base */
+    font-weight: 400; /* Equivalent to font-normal */
+    line-height: 1.5; /* Equivalent to leading-normal */
+  }
+  
+  .formInput::placeholder {
+    color: #4e7397;
+  }
+  
+  .formInput:focus {
+    border: none; /* Equivalent to focus:border-none */
+    outline: none; /* Equivalent to focus:outline-0 */
+    box-shadow: 0 0 0 2px #4e7397; /* Equivalent to focus:ring-0 (focus ring effect) */
+  }
+
+  .splitRow{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  

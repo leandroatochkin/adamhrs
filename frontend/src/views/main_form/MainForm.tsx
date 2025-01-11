@@ -1,11 +1,12 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useCountryQuery } from "../../services/api/countries_api";
-import { FormControl, InputLabel, TextField } from '@mui/material';
+import { FormControl, TextField } from '@mui/material';
 import { Dropdown, DateSelect } from "../../components";
 import dayjs, { Dayjs } from 'dayjs';
 import { calculateAge, inputErrorMessages } from "../../utils/functions/functions";
 import { useForm } from 'react-hook-form'
 import { regexList } from "../../utils/regex/regex";
+import style from './MainForm.module.css'
 
 const MainForm = () => {
   const [countries, setCountries] = useState<string[]>([]);
@@ -24,16 +25,11 @@ const MainForm = () => {
   })
 
   const { data, error, isLoading } = useCountryQuery();
-  const { register, handleSubmit, reset, formState: { errors } } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm()
 
   console.log(errors);
   
 
-  useEffect(() => {
-    if (formData) {
-      console.log(formData);
-    }
-  }, [formData]);
 
   useEffect(() => {
     if (data) {
@@ -81,9 +77,14 @@ const MainForm = () => {
   return (
     <form onSubmit={handleSubmit(()=>{
         console.log(formData);
-    })}>
+    })}
+    className={style.form}
+    >
+    <h2 className={style.title}>Personal Information</h2>
+    <div className={style.separator}></div>
     <FormControl>
 
+        <div className={style.splitRow}>
         <TextField 
         id="filled-basic" 
         label="First Name" 
@@ -92,7 +93,8 @@ const MainForm = () => {
         value={formData.firstName} 
         onChange={handleTextfieldChange} 
         error={!!errors.firstName}
-        helperText={inputErrorMessages(errors.firstName)}
+        helperText={inputErrorMessages(errors.firstName, 'First name')}
+        className={style.formInput}
         />
 
         <TextField 
@@ -102,8 +104,10 @@ const MainForm = () => {
         {...register('middleName', {required: false, minLength: 2, pattern: regexList.letters})}  
         onChange={handleTextfieldChange}
         error={!!errors.middleName} 
-        helperText={inputErrorMessages(errors.middleName)}
+        helperText={inputErrorMessages(errors.middleName, 'Middle name')}
+        className={style.formInput}
         />
+        </div>
 
         <TextField 
         id="filled-basic" 
@@ -112,7 +116,8 @@ const MainForm = () => {
         {...register('lastName', {required: true, minLength: 2, pattern: regexList.letters})} 
         onChange={handleTextfieldChange} 
         error={!!errors.lastName} 
-        helperText={inputErrorMessages(errors.lastName)}
+        helperText={inputErrorMessages(errors.lastName, 'Last name')}
+        className={style.formInput}
         />
 
         <TextField 
@@ -122,7 +127,8 @@ const MainForm = () => {
         {...register('addressLineOne', {required: true, minLength: 2, pattern: regexList.address})} 
         onChange={handleTextfieldChange} 
         error={!!errors.addressLineOne} 
-        helperText={inputErrorMessages(errors.addressLineOne)}
+        helperText={inputErrorMessages(errors.addressLineOne, 'Address line 1')}
+        className={style.formInput}
         />
 
         <TextField 
@@ -132,7 +138,8 @@ const MainForm = () => {
         {...register('addressLineTwo', {required: false, minLength: 2, pattern: regexList.address})} 
         onChange={handleTextfieldChange}
         error={!!errors.addressLineTwo} 
-        helperText={inputErrorMessages(errors.addressLineTwo)}
+        helperText={inputErrorMessages(errors.addressLineTwo, 'Address line 2')}
+        className={style.formInput}
         />
 
         <TextField 
@@ -142,7 +149,8 @@ const MainForm = () => {
         {...register('city', {required: true, minLength: 2, pattern: regexList.letters})} 
         onChange={handleTextfieldChange} 
         error={!!errors.city} 
-        helperText={inputErrorMessages(errors.city)}
+        helperText={inputErrorMessages(errors.city, 'City')}
+        className={style.formInput}
         />
 
         <TextField 
@@ -152,7 +160,8 @@ const MainForm = () => {
         {...register('state', {required: true, minLength: 2, pattern: regexList.letters})} 
         onChange={handleTextfieldChange} 
         error={!!errors.state} 
-        helperText={inputErrorMessages(errors.state)}
+        helperText={inputErrorMessages(errors.state, 'State')}
+        className={style.formInput}
         />
 
         <TextField 
@@ -162,27 +171,35 @@ const MainForm = () => {
         {...register('zip', {required: true, minLength: 2, pattern: regexList.zipCode})} 
         onChange={handleTextfieldChange}  
         error={!!errors.zip} 
-        helperText={inputErrorMessages(errors.zip)}
+        helperText={inputErrorMessages(errors.zip, 'Zip code')}
+        className={style.formInput}
+        />
+
+        <TextField 
+        id="filled-basic" 
+        label="Age" 
+        variant="filled" 
+        name="age" 
+        value={formData.age}
+        className={style.formInput}
         />
         
-        <TextField id="filled-basic" label="Age" variant="filled" name="age" value={formData.age}/>
-        
-    
-        
-        <InputLabel id="dropdown-label">Country:</InputLabel>
-        <Dropdown
-        data={countries}
-        labelId="country-label"
-        name="country"
-        value={formData.country}
-        onChange={handleCountryChange} // Pass the setter function to update country
-      />
-      <InputLabel id="date-label">Date of birth:</InputLabel>
-      <DateSelect
+        <DateSelect
         label="Date of birth"
         value={formData.dob ? dayjs(formData.dob) : null}
         onChange={handleDateChange}
         />
+        
+   
+        <Dropdown
+        data={countries}
+        label="Select country"
+        name="country"
+        value={formData.country}
+        onChange={handleCountryChange} // Pass the setter function to update country
+        />
+
+   
     </FormControl>
     <input type="submit" value="Submit"/>
     </form>
