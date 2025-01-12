@@ -102,7 +102,7 @@ const MainForm = () => {
         id="filled-basic" 
         label="First Name" 
         variant="filled" 
-        {...register('firstName', {required: true, minLength: 2, pattern: regexList.letters})} 
+        {...register('firstName', {required: true, minLength: 2, maxLength: 50, pattern: regexList.name})} 
         value={formData.firstName} 
         onChange={handleTextfieldChange} 
         error={!!errors.firstName}
@@ -115,7 +115,7 @@ const MainForm = () => {
         id="filled-basic" 
         label="Middle Name" 
         variant="filled" 
-        {...register('middleName', {required: false, minLength: 2, pattern: regexList.letters})}  
+        {...register('middleName', {required: false, minLength: 2, maxLength: 50, pattern: regexList.name})}  
         onChange={handleTextfieldChange}
         error={!!errors.middleName} 
         helperText={inputErrorMessages(errors.middleName, 'Middle name')}
@@ -128,7 +128,7 @@ const MainForm = () => {
         id="filled-basic" 
         label="Last Name" 
         variant="filled" 
-        {...register('lastName', {required: true, minLength: 2, pattern: regexList.letters})} 
+        {...register('lastName', {required: true, minLength: 2, maxLength: 70, pattern: regexList.name})} 
         onChange={handleTextfieldChange} 
         error={!!errors.lastName} 
         helperText={inputErrorMessages(errors.lastName, 'Last name')}
@@ -158,7 +158,7 @@ const MainForm = () => {
         id="filled-basic" 
         label="Address Line 1" 
         variant="filled" 
-        {...register('addressLineOne', {required: true, minLength: 2, pattern: regexList.address})} 
+        {...register('addressLineOne', {required: true, minLength: 2, maxLength: 70, pattern: regexList.address})} 
         onChange={handleTextfieldChange} 
         error={!!errors.addressLineOne} 
         helperText={inputErrorMessages(errors.addressLineOne, 'Address line 1')}
@@ -170,7 +170,7 @@ const MainForm = () => {
         id="filled-basic" 
         label="Address Line 2(optional)" 
         variant="filled" 
-        {...register('addressLineTwo', {required: false, minLength: 2, pattern: regexList.address})} 
+        {...register('addressLineTwo', {required: false, minLength: 2, maxLength: 70, pattern: regexList.address})} 
         onChange={handleTextfieldChange}
         error={!!errors.addressLineTwo} 
         helperText={inputErrorMessages(errors.addressLineTwo, 'Address line 2')}
@@ -182,7 +182,7 @@ const MainForm = () => {
         id="filled-basic" 
         label="City" 
         variant="filled" 
-        {...register('city', {required: true, minLength: 2, pattern: regexList.address})} 
+        {...register('city', {required: true, minLength: 2, maxLength: 70,pattern: regexList.address})} 
         onChange={handleTextfieldChange} 
         error={!!errors.city} 
         helperText={inputErrorMessages(errors.city, 'City')}
@@ -194,7 +194,7 @@ const MainForm = () => {
         id="filled-basic" 
         label="State" 
         variant="filled" 
-        {...register('state', {required: true, minLength: 2, pattern: regexList.address})} 
+        {...register('state', {required: true, minLength: 2, maxLength: 50, pattern: regexList.address})} 
         onChange={handleTextfieldChange} 
         error={!!errors.state} 
         helperText={inputErrorMessages(errors.state, 'State')}
@@ -207,7 +207,7 @@ const MainForm = () => {
         id="filled-basic" 
         label="Zip Code" 
         variant="filled" 
-        {...register('zip', {required: true, minLength: 2, pattern: regexList.zipCode})} 
+        {...register('zip', {required: true, minLength: 2, maxLength: 30, pattern: regexList.zipCode})} 
         onChange={handleTextfieldChange}  
         error={!!errors.zip} 
         helperText={inputErrorMessages(errors.zip, 'Zip code')}

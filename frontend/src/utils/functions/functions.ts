@@ -20,6 +20,8 @@ export const inputErrorMessages = (inputErrorObj: any, inputName: string) => {
           return `${inputName} is required`;
         case 'pattern':
           return 'Invalid input';
+        case 'maxLength':
+          return 'Exceeded character limit';  
       }
 }
   
