@@ -1,4 +1,4 @@
-# MainForm Component Manual Testing
+#Submission for AdamHRS
 
 These are the instructions to set up and manually test the submission for AdamHRS that consists of a form made in React+Ts
 
