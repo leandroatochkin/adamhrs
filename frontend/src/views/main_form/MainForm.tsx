@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useCountryQuery } from "../../services/api/countries_api";
-import { FormControl, TextField, SelectChangeEvent } from '@mui/material';
-import { Dropdown, DateSelect } from "../../components";
-import dayjs, { Dayjs } from 'dayjs';
-import { calculateAge, inputErrorMessages } from "../../utils/functions/functions";
+import React, { useEffect, useState } from "react"
+import { useCountryQuery } from "../../services/api/countries_api"
+import { FormControl, TextField, SelectChangeEvent } from '@mui/material'
+import { Dropdown, DateSelect } from "../../components"
+import dayjs, { Dayjs } from 'dayjs'
+import { calculateAge, inputErrorMessages } from "../../utils/functions/functions"
 import { useForm } from 'react-hook-form'
-import { regexList } from "../../utils/regex/regex";
+import { regexList } from "../../utils/regex/regex"
 import style from './MainForm.module.css'
 
 
@@ -29,15 +29,6 @@ const MainForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
 
  
-  const dataLoadingSignStyles = {
-    width: '10%', 
-    height: '10%', 
-    backgroundColor: '#e7edf3', 
-    borderRadius: '16px', 
-    display: 'flex', 
-    alignItems: 'center', 
-    justifyContent: 'center'
-    }
   
 
 
@@ -45,9 +36,9 @@ const MainForm = () => {
     if (data) {
       setCountries(
         data.map((country) => country.name.common).sort((a, b) => a.localeCompare(b))
-      );
+      )
     }
-  }, [data]);
+  }, [data])
 
   useEffect(() => {
     const age = calculateAge(formData.dob);
@@ -57,41 +48,41 @@ const MainForm = () => {
                 ...prev,
                 age: String(age), 
               })
-      );
+      )
     }
-  }, [formData.dob]);
+  }, [formData.dob])
 
   const handleTextfieldChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-  };
+  }
 
   const handleCountryChange = (event: SelectChangeEvent<string>) => {
     setFormData((prev) => ({
       ...prev,
       country: event.target.value as string, 
-    }));
-  };
+    }))
+  }
 
   const handleDateChange = (newValue: Dayjs | null) => {
     setFormData((prev) => ({
       ...prev,
       dob: newValue ? newValue.format('YYYY-MM-DD') : '', 
-    }));
-  };
+    }))
+  }
   
 
   if (isLoading) return <div className={style.container}>
-    <div style={dataLoadingSignStyles}>
+    <div className={style.dataLoadingSignStyles}>
     <p style={{color: '#0e141b', fontWeight: 'bolder'}}>Loading...</p>
     </div>
-  </div>;
+  </div>
 
   if (error) return <div className={style.container}>
-  <div style={dataLoadingSignStyles}>
+  <div className={style.dataLoadingSignStyles}>
   <p style={{color: '#0e141b', fontWeight: 'bolder'}}>Error fetching countries</p>
   </div>
-</div>;
+</div>
   
   
 
@@ -117,7 +108,7 @@ const MainForm = () => {
         error={!!errors.firstName}
         helperText={inputErrorMessages(errors.firstName, 'First name')}
         className={style.formInput}
-        sx={{paddingBottom: '2.5rem'}}
+        sx={{paddingBottom: '3.5rem'}}
         />
 
         <TextField 
@@ -129,7 +120,7 @@ const MainForm = () => {
         error={!!errors.middleName} 
         helperText={inputErrorMessages(errors.middleName, 'Middle name')}
         className={style.formInput}
-        sx={{paddingBottom: '2.5rem'}}
+        sx={{paddingBottom: '1.5rem'}}
         />
         </div>
 
@@ -221,7 +212,7 @@ const MainForm = () => {
         error={!!errors.zip} 
         helperText={inputErrorMessages(errors.zip, 'Zip code')}
         className={style.zipInput}
-        sx={{ width: '50%'}}
+        sx={{ width: '50%',  paddingBottom: '1.5rem'}}
         />
 
         <div>
