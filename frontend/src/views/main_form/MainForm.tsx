@@ -6,6 +6,7 @@ import dayjs, { Dayjs } from 'dayjs'
 import { calculateAge, inputErrorMessages } from "../../utils/functions/functions"
 import { useForm } from 'react-hook-form'
 import { regexList } from "../../utils/regex/regex"
+import { CircleLoader } from "react-spinners"
 import style from './MainForm.module.css'
 
 
@@ -43,14 +44,13 @@ const MainForm = () => {
   useEffect(() => {
     const age = calculateAge(formData.dob);
     if (formData.dob !== '') {
-        setFormData(
-            (prev) => ({
-                ...prev,
-                age: String(age), 
-              })
-      )
+      setFormData((prev) => ({
+        ...prev,
+        age: (isNaN(age) || age > 125) ? '' : String(age), // prevents displayng NaN of ages over 125
+      }));
     }
-  }, [formData.dob])
+  }, [formData.dob]);
+  
 
   const handleTextfieldChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
