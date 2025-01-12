@@ -84,20 +84,33 @@
             font-size: 1rem;
             font-weight: bolder;
           }
+
+          .zipInput{
+            display: flex;
+            width: 50%;
+            min-width: 0;
+            flex: 1;
+            resize: none;
+            overflow: hidden;
+            border-radius: 0.4rem; 
+            color: #0e141b;
+            outline: none; 
+            border: none; 
+            background-color: #e7edf3;
+            height: 2rem; 
+            font-size: 1rem; 
+            font-weight: 400;
+            height: 3.5rem;
+          }
       }
       
-      /* @media (min-width: 900px) {
-        .container{
-            background-color: green;
-        }
-      } */
       
       @media (min-width: 1200px) {
         
     .form{
         display: flex;
         flex-direction: column;
-        height: 80%;
+        height: 90%;
         width: 35%;
         background-color: #e7edf3;
         padding: 0 2% 0 2%;
@@ -182,6 +195,21 @@
         color: #0e141b;
         text-align: left;
         line-height: 0;
+      }
+
+      .zipInput{
+        display: flex;  
+        min-width: 0;
+        overflow: hidden;
+        border-radius: 0.4rem; 
+        color: #0e141b;
+        outline: none; 
+        border: none; 
+        background-color: #e7edf3;
+        height: 2rem; 
+        font-size: 1rem; 
+        font-weight: 400;
+        height: 3.5rem;
       }
 
       }

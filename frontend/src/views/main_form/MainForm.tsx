@@ -29,6 +29,15 @@ const MainForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
 
  
+  const dataLoadingSignStyles = {
+    width: '10%', 
+    height: '10%', 
+    backgroundColor: '#e7edf3', 
+    borderRadius: '16px', 
+    display: 'flex', 
+    alignItems: 'center', 
+    justifyContent: 'center'
+    }
   
 
 
@@ -46,7 +55,7 @@ const MainForm = () => {
         setFormData(
             (prev) => ({
                 ...prev,
-                age: String(age), // Type assertion to string
+                age: String(age), 
               })
       );
     }
@@ -73,13 +82,13 @@ const MainForm = () => {
   
 
   if (isLoading) return <div className={style.container}>
-    <div style={{width: '10%', height: '10%', backgroundColor: '#e7edf3', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+    <div style={dataLoadingSignStyles}>
     <p style={{color: '#0e141b', fontWeight: 'bolder'}}>Loading...</p>
     </div>
   </div>;
 
   if (error) return <div className={style.container}>
-  <div style={{width: '10%', height: '10%', backgroundColor: '#e7edf3', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+  <div style={dataLoadingSignStyles}>
   <p style={{color: '#0e141b', fontWeight: 'bolder'}}>Error fetching countries</p>
   </div>
 </div>;
@@ -211,8 +220,8 @@ const MainForm = () => {
         onChange={handleTextfieldChange}  
         error={!!errors.zip} 
         helperText={inputErrorMessages(errors.zip, 'Zip code')}
-        className={style.formInput}
-        sx={{paddingBottom: '3rem', width: '50%'}}
+        className={style.zipInput}
+        sx={{ width: '50%'}}
         />
 
         <div>

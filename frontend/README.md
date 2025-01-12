@@ -1,50 +1,62 @@
-# React + TypeScript + Vite
+# MainForm Component Manual Testing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+These are the instructions to set up and manually test the submission for AdamHRS that consists of a form made in React+Ts
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Ensure you have the following tools installed:
 
-## Expanding the ESLint configuration
+-Node.js
+-npm or yarn
+-VScode
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Setup Instructions
 
-- Configure the top-level `parserOptions` property like this:
+### 1. Clone the Repository
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+git clone https://github.com/leandroatochkin/adamhrs.git
+cd adamhrs
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 2. Install Dependencies
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Use npm or yarn to install the required dependencies:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm install || npm i
+# or
+yarn install
 ```
+
+### 3. Start the Development Server
+
+Run the following command to start the local development server:
+
+```bash
+npm run dev
+# or
+yarn run dev
+```
+
+The app will be accessible usually at [http://localhost:5173] but it may vary depending on port usage.
+
+## Manual Testing
+
+### Testing
+
+1. **Personal Information Fields**:
+   - Complete all fields, if any input has an invalid input (required, lenght, regex) an error msg will appear
+
+2. **Date of Birth and Age**:
+   - Select a date of birth and the age will be calculated and displayed automatically to prevent missmatch.
+
+3. **Country Dropdown**:
+   - Open the dropdown and select a country.
+
+4. **Submit Button**:
+   - Fill out all required fields and click `Submit`.
+   - Check the console for the `formData` object to verify the submitted data matches your input.
+
+
+
