@@ -13,7 +13,7 @@ interface Props {
 
 const DateSelect: React.FC<Props> = ({ label, value, onChange }) => {
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ar">
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
       <DatePicker
         label={label}
         value={value}

@@ -3,10 +3,9 @@ import { useCountryQuery } from "../../services/api/countries_api"
 import { FormControl, TextField, SelectChangeEvent } from '@mui/material'
 import { Dropdown, DateSelect } from "../../components"
 import dayjs, { Dayjs } from 'dayjs'
-import { calculateAge, inputErrorMessages } from "../../utils/functions/functions"
+import { calculateAge, inputErrorMessages, checkDateOfBirth } from "../../utils/functions/functions"
 import { useForm } from 'react-hook-form'
 import { regexList } from "../../utils/regex/regex"
-import { CircleLoader } from "react-spinners"
 import style from './MainForm.module.css'
 
 
@@ -46,7 +45,7 @@ const MainForm = () => {
     if (formData.dob !== '') {
       setFormData((prev) => ({
         ...prev,
-        age: (isNaN(age) || age > 125) ? '' : String(age), // prevents displayng NaN of ages over 125
+        age: (isNaN(age) || age > 125 || age < 0) ? '' : String(age), // prevents displayng NaN of ages over 125 and lower than 0
       }));
     }
   }, [formData.dob]);
@@ -70,6 +69,21 @@ const MainForm = () => {
       dob: newValue ? newValue.format('YYYY-MM-DD') : '', 
     }))
   }
+
+  const submitForm = () => {
+    if(formData.dob === '') {
+      alert('Please select a date of birth')
+    }
+    else if(!checkDateOfBirth(formData.dob)) {
+      alert('Date of birth cannot be in the future')
+    }
+     else if(formData.country === '') {
+        alert('Please select a country')
+    } else {
+        console.log(formData)
+    }
+    
+  }
   
 
   if (isLoading) return <div className={style.container}>
@@ -89,7 +103,7 @@ const MainForm = () => {
   return (
     <div className={style.container}>
         <form onSubmit={handleSubmit(()=>{
-        console.log(formData);
+        submitForm()
     })}
     className={style.form}
     >

@@ -24,4 +24,10 @@ export const inputErrorMessages = (inputErrorObj: any, inputName: string) => {
           return 'Exceeded character limit';  
       }
 }
+
+export const checkDateOfBirth = (dob: string) => {
+    const today = new Date(); 
+    const dobDate = new Date(dob); 
   
+    return dobDate < today; 
+  };
