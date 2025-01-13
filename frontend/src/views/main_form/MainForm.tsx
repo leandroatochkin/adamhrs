@@ -192,6 +192,7 @@ const MainForm = () => {
         sx={{paddingBottom: '1.5rem'}}
         />
 
+        <div className={style.splitRow}>
         <TextField 
         id="filled-basic" 
         label="City" 
@@ -215,6 +216,7 @@ const MainForm = () => {
         className={style.formInput}
         sx={{paddingBottom: '1.5rem'}}
         />
+        </div>
 
         <div className={style.splitRow}>
         <TextField 
