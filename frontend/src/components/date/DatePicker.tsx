@@ -20,7 +20,7 @@ const DateSelect: React.FC<Props> = ({ label, value, onChange }) => {
         onChange={(newValue: Dayjs | null) => onChange(newValue)}
         className={style.datePicker}
         disableFuture={true}
-        sx={{paddingBottom: '1.5rem'}}
+        sx={{outline: 'none'}}
       />
     </LocalizationProvider>
   );
